@@ -11,6 +11,10 @@ export default class Toolbar extends React.Component {
             unread messages
           </p>
 
+          <a className="btn btn-danger">
+            <i className="fa fa-plus"></i>
+          </a>
+
           <button className="btn btn-default">
             <i className="fa fa-check-square-o"></i>
           </button>

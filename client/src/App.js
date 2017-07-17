@@ -66,8 +66,25 @@ var allmsg = [
           "labels": []
         }
       ]
+  const truefalseClick2 = (event,topic)=>{
+      event.stopPropagation();
+      this.setState(prevState =>
+        ({[`${topic}`]:!prevState[`${topic}`]})
+      );
+    }
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    let truefalseClick = truefalseClick2.bind(this)
+    this.state={allmsg}
+    this.state.truefalseClick = (event,topic,msg)=>{
+        event.stopPropagation();
+        msg[topic] = !msg[topic];
+        //update the entire msg array
+        this.setState({allmsg:this.state.allmsg});
+      }
+  }
   render() {
     return (
       <div className="App">
@@ -76,7 +93,7 @@ class App extends Component {
             <Toolbar />
           </div>
           <Compose />
-          <MessageList allmsg={ allmsg }/>
+          <MessageList allmsg={ this.state.allmsg } truefalseClick={ this.state.truefalseClick }/>
         </div>
       </div>
     );
