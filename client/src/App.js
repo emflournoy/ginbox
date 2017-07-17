@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Toolbar from './components/Toolbar'
+import Compose from './components/Compose';
+import MessageList from './components/MessageList';
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div className="container">
+          <div className="row">
+          <Toolbar />
+          </div>
+          <Compose />
+          <MessageList />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
