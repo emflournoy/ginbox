@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class Toolbar extends React.Component {
 
-  render(){
+  render(props){
     return(
       <div className="row toolbar">
         <div className="col-md-12">
@@ -15,8 +15,8 @@ export default class Toolbar extends React.Component {
             <i className="fa fa-plus"></i>
           </a>
 
-          <button className="btn btn-default">
-            <i className="fa fa-check-square-o"></i>
+          <button className="btn btn-default" onClick={()=>this.props.selectAll()}>
+            <i className={`${this.props.selStatus}`}></i>
           </button>
 
           <button className="btn btn-default">

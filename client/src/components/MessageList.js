@@ -7,7 +7,7 @@ export default class MessageList extends React.Component {
     return(
       <div className="container">
       {this.props.allmsg.map((msg, i) => (
-              <SingleMsg key={i} msg={msg} truefalseClick={ this.props.truefalseClick }/>
+              <SingleMsg key={i} msg={msg} truefalseClick={this.props.truefalseClick}/>
           ))}
       </div>
     );

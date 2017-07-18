@@ -8,7 +8,7 @@ render(props){
         <div className="col-xs-1">
           <div className="row">
             <div className="col-xs-2">
-              <input type="checkbox" />
+              <input type="checkbox" checked={this.props.msg.selected} onClick={(event)=>this.props.truefalseClick(event,'selected', this.props.msg)}/>
             </div>
             <div className="col-xs-2">
               <i className={`star fa ${this.props.msg.starred ? 'fa-star':'fa-star-o'}`} onClick={(event)=>this.props.truefalseClick(event,'starred', this.props.msg)}></i>

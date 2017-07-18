@@ -66,34 +66,61 @@ var allmsg = [
           "labels": []
         }
       ]
-  const truefalseClick2 = (event,topic)=>{
-      event.stopPropagation();
-      this.setState(prevState =>
-        ({[`${topic}`]:!prevState[`${topic}`]})
-      );
-    }
+
 
 class App extends Component {
   constructor(props){
     super(props);
-    let truefalseClick = truefalseClick2.bind(this)
-    this.state={allmsg}
+    this.state = {};
     this.state.truefalseClick = (event,topic,msg)=>{
         event.stopPropagation();
         msg[topic] = !msg[topic];
         //update the entire msg array
         this.setState({allmsg:this.state.allmsg});
+        if(topic==='selected'){
+          this.setState({selStatus:this.state.allClicked.some})
+        }
       }
+    this.state.selectAll = ()=>{
+      if(this.state.selStatus!==this.state.allClicked.true){
+        for(let i=0;i<allmsg.length;i++){
+          allmsg[i].selected = true;
+        }
+        this.setState({allmsg:this.state.allmsg});
+        this.setState({selStatus:this.state.allClicked.true})
+        }else{
+          for(let i=0;i<allmsg.length;i++){
+            allmsg[i].selected = false;
+          }
+          this.setState({allmsg:this.state.allmsg});
+          this.setState({selStatus:this.state.allClicked.false})
+        }
+      }
+    this.state.allClicked = {
+      true: "fa fa-check-square-o",
+      some: "fa fa-minus-square-o",
+      false: "fa fa-square-o"
+    }
+    this.state.selStatus = this.state.allClicked.false;
   }
+
+  componentWillMount(){
+    for(let i=0;i<allmsg.length;i++){
+      allmsg[i].selected=false;
+    }
+    this.setState({allmsg: allmsg})
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <div className="container">
           <div className="row">
-            <Toolbar />
+            <Toolbar allmsg={this.state.allmsg} selectAll={this.state.selectAll} selStatus={this.state.selStatus}/>
           </div>
           <Compose />
-          <MessageList allmsg={ this.state.allmsg } truefalseClick={ this.state.truefalseClick }/>
+          <MessageList allmsg={this.state.allmsg} truefalseClick={this.state.truefalseClick}/>
         </div>
       </div>
     );
